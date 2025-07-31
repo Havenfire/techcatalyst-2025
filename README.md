@@ -49,7 +49,7 @@ Delta Lake tables are a reliable and scalable storage layer for Sparkify’s dat
 - Analysts can use SQL
 - This architecture supports Sparkify’s goal of understanding user behavior and song popularity without the overhead of managing raw files.
 
-
+- Writing python code to parse the .json files would take a long time, and also require at technical understanding of the data and how it is structured. The Delta Lake tables allow analysts to make quick insights without any heavy knowledge of how the data was originally stored
 ---
 
 
