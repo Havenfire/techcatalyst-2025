@@ -27,13 +27,13 @@ This project simulates the work of a data engineer at **Sparkify**, a music stre
 
 ## Entity Relationship Diagram (ERD)
 
-![ERD Diagram] (/assets/images/tux.png "Tux")
+![ERD Diagram](./Star_schema.png)
 
 ---
 
 ## ETL Architecture and Process
 
-![ETL Process] (/assets/images/tux.png "Tux")
+![ETL Process](./ETL_Process.png)
 
 
 
@@ -73,15 +73,35 @@ Delta Lake tables are a reliable and scalable storage layer for Sparkify’s dat
 ## Example Queries
 
 ```
--- Create a table for storing book information
-CREATE TABLE books (
-id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-title TEXT NOT NULL,
-author_id BIGINT REFERENCES authors (id)
-);
+-- How many songs have no year?
+select count(*) ​
+from songs_dim ​
+where year = 0
+```
+-- What is the user gender counts?
+```
+select gender, count(*)​
+from users_dim ​
+group by gender​
+order by count(*) desc
+```
 
--- Insert a new book into the table
-INSERT INTO books (title, author_id)
-VALUES ('The Great Gatsby', 1);
+-- What is the count of paid and free users?
+```
+select SP.level, count(*)​
+from songplays_fact SP​
+join users_dim U on SP.user_id = U.userId AND SP.level = U.level​
+group by SP.level
+```
 
+-- What is the averate total session duration?
+```
+WITH DUR_BY_SESS AS (​
+SELECT SUM(duration) AS TOTAL_LISTENED​
+FROM songplays_view​
+GROUP BY session_id​
+ORDER BY session_id DESC​
+)
+SELECT AVG(TOTAL_LISTENED)​
+FROM DUR_BY_SESS​
 ```
