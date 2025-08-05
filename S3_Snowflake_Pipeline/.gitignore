@@ -1,0 +1,21 @@
+# Ignore Jupyter Notebook checkpoints
+**/.ipynb_checkpoints/
+
+# macOS system files
+.DS_Store
+
+# VSCode settings
+.vscode/
+
+# Ignore all .env files anywhere in the repo
+**/.env
+
+# Ignore all .cfg files anywhere in the repo
+**/*.cfg
+
+**/*.bkp
+
+dev2/
+devpy/
+MyWork/
+Class Work/
