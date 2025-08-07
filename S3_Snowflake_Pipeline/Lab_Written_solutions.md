@@ -108,7 +108,10 @@ def lambda_handler(event, context):
     
     # Write the DataFrame to Parquet format in the destination S3 bucket
     result = wr.s3.to_parquet(
-		    #YOURCODE
+		    df=input_df,
+            path=output_path,
+            dataset=True,
+            mode="overwrite"
     )
     
     print("RESULT: ")
