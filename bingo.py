@@ -1,5 +1,6 @@
 import random
-
+import matplotlib.pyplot as plt
+import numpy as np
 def chkh(a):
     d = 0
     for i in range(5):
@@ -71,8 +72,26 @@ def check_win(a):
 
 def main():
     # print(run_single_game(5))
-    wins_list = run_x_games(1000, 14)
-    print("Average Bingo Win Time", sum(wins_list) / len(wins_list))
+    # wins_list = run_x_games(1000, 14)
+    
+    
+    # wins_list = []
+    # for i in range(1, 21):
+    #     print("Simulation with ", i, " players")
+    #     local_game = run_x_games(1000, i)
+    #     avg_win_time = sum(local_game) / len(local_game)
+    #     wins_list.append(avg_win_time)
+
+    wins_list = [14.207, 12.751, 11.599, 11.192, 10.784, 10.492, 10.319, 9.948, 9.711, 9.622, 9.523, 9.389, 9.265, 9.065, 9.029, 8.784, 8.854, 8.738, 8.713, 8.638]
+    wins_array = np.array(wins_list)
+    plt.plot(wins_array, marker='o')
+    plt.title("Trend of Win Values")
+    plt.xlabel("Player Count")
+    plt.ylabel("Win Value")
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
+
 
 
 if __name__ == "__main__":
